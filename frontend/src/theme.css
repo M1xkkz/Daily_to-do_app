@@ -1,0 +1,391 @@
+/* =========================================================
+   Light Minimal Theme — Focus on White, Calm & Clean
+   ใช้กับ class เดิมทั้งหมด: .container, .task-item, .task-title,
+   .task-notes, .date-item, .link-btn
+   ========================================================= */
+
+/* ---------- Base & Typography ---------- */
+:root{
+    --bg: #fafafa;
+    --panel: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;         /* neutral-500 */
+    --border: #e5e7eb;        /* neutral-200 */
+    --border-strong: #d1d5db; /* neutral-300 */
+    --shadow: 0 6px 18px rgba(0,0,0,.06);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+    --ring: 0 0 0 3px rgba(0,0,0,.06);
+    --accent: #111111;        /* black for b&w accent */
+    --accent-hover: #000000;
+    --danger: #b91c1c;        /* for errors */
+  }
+  
+  * { box-sizing: border-box; }
+  
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.55 "Inter", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: .1px;
+    margin: 0;
+  }
+  
+  /* สลับธีมลื่นตา */
+  html, body, .container, button, .link-btn, input, textarea, select {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  
+  /* Selection */
+  ::selection { background: #111; color: #fff; }
+  
+  /* ---------- Layout ---------- */
+  .container {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+  
+  /* Section headings */
+  h1, h2, h3 {
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    letter-spacing: .2px;
+  }
+  h2 { font-size: 22px; }
+  h3 { font-size: 16px; color: #111; }
+  
+  /* Subtle paragraph */
+  p { margin: 8px 0; color: var(--text); }
+  
+  /* ---------- Controls (Buttons & Inputs) ---------- */
+  button, .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+    transition: transform .04s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+  }
+  
+  button:hover, .link-btn:hover {
+    background: #f3f4f6;
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+  
+  button:active, .link-btn:active { transform: translateY(0); }
+  
+  button:focus-visible, .link-btn:focus-visible,
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+    border-color: var(--accent);
+  }
+  
+  /* ปุ่มเน้น (เติม class="primary" เมื่อต้องการ) */
+  button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: #111;
+  }
+  button.primary:hover { background: var(--accent-hover); }
+  
+  /* Inputs */
+  input, textarea, select {
+    width: 100%;
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    appearance: none;
+  }
+  input[type="date"], input[type="time"] { padding: 9px 10px; }
+  
+  /* Placeholder */
+  ::placeholder { color: #9ca3af; }
+  
+  /* Error text */
+  .error-text { color: var(--danger); }
+  
+  /* ---------- Lists & Cards ---------- */
+  ul { margin: 0; padding: 0; list-style: none; }
+  
+  /* Task row (Dashboard) */
+  .task-item {
+    display: grid;
+    grid-template-columns: auto 2fr 2fr 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .task-item:hover {
+    background: #fbfbfb;
+    border-radius: 8px;
+  }
+  
+  /* Task title & notes */
+  .task-title { font-weight: 600; }
+  .task-title.done {
+    text-decoration: line-through;
+    color: #9ca3af;
+  }
+  .task-notes { color: var(--muted); }
+  
+  /* Date list row (DatesPage) */
+  .date-item {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--border);
+    border-radius: 10px;
+    transition: background .15s ease, box-shadow .15s ease, transform .04s ease;
+  }
+  .date-item:hover { background: #fdfdfd; box-shadow: var(--shadow-sm); }
+  
+  /* Inline subtle divider for nested list */
+  .date-item .nested {
+    margin-top: 8px;
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+  }
+  
+  /* ---------- Checkbox (green when checked) ---------- */
+  input[type="checkbox"][title="ติ้กเพื่อสลับสถานะ"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #9ca3af;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  }
+  input[type="checkbox"][title="ติ้กเพื่อสลับสถานะ"]:hover {
+    transform: scale(1.06);
+    border-color: #22c55e;
+  }
+  input[type="checkbox"][title="ติ้กเพื่อสลับสถานะ"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(34,197,94,.25);
+  }
+  input[type="checkbox"][title="ติ้กเพื่อสลับสถานะ"]:checked {
+    background: #22c55e;
+    border-color: #22c55e;
+    transform: scale(1.06);
+    box-shadow: 0 2px 8px rgba(34,197,94,.25);
+  }
+  input[type="checkbox"][title="ติ้กเพื่อสลับสถานะ"]:checked::after {
+    content: "";
+    color: #fff;
+    font-size: 13px;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -54%);
+  }
+  
+  /* ---------- Toolbar / Minor layout helpers ---------- */
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;  /* fix: was 'true' */
+    margin: 12px 0 8px 0;
+  }
+  
+  /* Simple grid helper for the add form (Dashboard) */
+  .grid-add {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 2fr 2fr 1fr auto;
+  }
+  
+  /* ---------- Links ---------- */
+  a { color: #111; text-decoration: none; }
+  a:hover { text-decoration: none; }
+  
+  /* ---------- Empty state ---------- */
+  .empty { color: var(--muted); padding: 12px 0; }
+  
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .task-item {
+      grid-template-columns: auto 1.6fr 1.6fr .8fr auto auto;
+    }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 18px; margin: 20px auto; }
+    .grid-add { grid-template-columns: 1fr; }
+    .toolbar { gap: 10px; }
+    .task-item {
+      grid-template-columns: auto 1fr;
+      grid-row-gap: 6px;
+    }
+    .task-item > :nth-child(3),   /* notes */
+    .task-item > :nth-child(4),   /* time */
+    .task-item > :nth-child(5),   /* edit/save */
+    .task-item > :nth-child(6) {  /* delete/cancel */
+      grid-column: 2 / -1;
+    }
+  }
+  
+  /* ===== Dark Mode Overrides (ใช้เมื่อ <html data-theme="dark">) ===== */
+  :root[data-theme="dark"] {
+    --bg: #111213;
+    --panel: #17181a;
+    --text: #f5f7fa;
+    --muted: #a3aab4;
+    --border: #2a2e33;
+    --border-strong: #3a3f45;
+    --shadow: 0 8px 22px rgba(0,0,0,.35);
+    --shadow-sm: 0 3px 10px rgba(0,0,0,.3);
+    --ring: 0 0 0 3px rgba(255,255,255,.08);
+    --accent: #ffffff;
+    --accent-hover: #f5f5f5;
+  }
+  
+  /* ให้ปุ่ม/อินพุตกลืนกับดาร์กโหมดอัตโนมัติด้วยตัวแปรเดิม */
+  :root[data-theme="dark"] button,
+  :root[data-theme="dark"] .link-btn {
+    background: var(--panel);
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  :root[data-theme="dark"] button:hover,
+  :root[data-theme="dark"] .link-btn:hover {
+    background: #1f2124;
+  }
+  :root[data-theme="dark"] input,
+  :root[data-theme="dark"] textarea,
+  :root[data-theme="dark"] select {
+    background: #1c1e21;
+    color: var(--text);
+    border-color: var(--border);
+  }
+  
+  /* หัวข้อให้ตามสี Dark */
+  :root[data-theme="dark"] h1,
+  :root[data-theme="dark"] h2,
+  :root[data-theme="dark"] h3 { color: var(--text); }
+  
+  /* Hover tuning for Dark Mode */
+  :root[data-theme="dark"] .task-item:hover,
+  :root[data-theme="dark"] .date-item:hover {
+    background: #202225;
+    box-shadow: none;
+  }
+  :root[data-theme="dark"] .task-item,
+  :root[data-theme="dark"] .date-item {
+    border-bottom-color: #2a2e33;
+  }
+  :root[data-theme="dark"] button:hover,
+  :root[data-theme="dark"] .link-btn:hover {
+    background: #222529;
+    border-color: #3a3f45;
+    transform: translateY(-1px);
+  }
+  
+  /* ===== Mobile Sidebar (≤480px) ===== */
+  .hamburger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+  
+  /* Sidebar container + overlay */
+  .sidebar-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.35);
+    opacity: 0; pointer-events: none;
+    transition: opacity .2s ease;
+    z-index: 90;
+  }
+  .sidebar-overlay.show { opacity: 1; pointer-events: auto; }
+  
+  .sidebar {
+    position: fixed; top: 0; right: 0;
+    width: 76vw; max-width: 320px; height: 100vh;
+    background: var(--panel); color: var(--text);
+    border-left: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    z-index: 99;
+    display: flex; flex-direction: column;
+    padding: 16px;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar .side-title { font-weight: 700; margin-bottom: 12px; }
+  .sidebar .side-actions { display: grid; gap: 10px; }
+  
+  /* Dark mode tune for sidebar */
+  :root[data-theme="dark"] .hamburger { background: var(--panel); color: var(--text); border-color: var(--border-strong); }
+  :root[data-theme="dark"] .sidebar { background: var(--panel); color: var(--text); border-left-color: var(--border); }
+  :root[data-theme="dark"] .sidebar-overlay { background: rgba(0,0,0,.5); }
+  
+  /* Breakpoint: ≤480px — ซ่อนปุ่มบน header, โชว์ hamburger */
+  @media (max-width: 480px) {
+    .header-actions { display: none; }
+    .hamburger { display: inline-flex; }
+  }
+  
+  /* ===== Toggle Button (Dark/Light) — ใช้กับ ThemeToggle.jsx เวอร์ชัน .toggle-btn ===== */
+  .toggle-btn {
+    --w: 54px; --h: 28px; --p: 3px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; border: none; padding: 0; cursor: pointer;
+    color: var(--text);
+  }
+  .toggle-btn .toggle-track {
+    width: var(--w); height: var(--h);
+    background: #e5e7eb; border: 1px solid var(--border-strong);
+    border-radius: var(--h);
+    position: relative; transition: background-color .2s ease, border-color .2s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .toggle-btn .toggle-thumb {
+    position: absolute; top: var(--p); left: var(--p);
+    width: calc(var(--h) - var(--p) * 2); height: calc(var(--h) - var(--p) * 2);
+    background: #fff; border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    transition: transform .2s ease, background-color .2s ease;
+  }
+  .toggle-btn .toggle-text { font-size: 13px; color: var(--muted); }
+  /* ON state */
+  .toggle-btn.on .toggle-track { background: #111; border-color: #111; }
+  .toggle-btn.on .toggle-thumb { transform: translateX(calc(var(--w) - var(--h))); background: #fff; }
+  .toggle-btn.on .toggle-text { color: var(--text); }
+  /* Hover/Focus */
+  .toggle-btn:focus-visible .toggle-track { box-shadow: var(--ring); }
+  .toggle-btn:hover .toggle-track { border-color: var(--accent); }
+  /* Dark mode tuning */
+  :root[data-theme="dark"] .toggle-btn .toggle-track { background: #2a2e33; border-color: #3a3f45; }
+  :root[data-theme="dark"] .toggle-btn.on .toggle-track { background: #f5f5f5; border-color: #f5f5f5; }
+  :root[data-theme="dark"] .toggle-btn.on .toggle-thumb { background: #111; }
+  
